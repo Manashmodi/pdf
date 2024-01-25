@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF Example</title>
+    <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 20mm; 
+  font-size: 12pt; 
+  color: #333;  
+  
+}
+
+#content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20mm;
+}
+
+#content div {
+  flex: 1;
+}
+
+img {
+  max-width: 150mm; 
+  height: auto;
+  border: 1px solid #ccc; 
+  margin-right: 10mm; 
+  width: 40%;
+  margin-left: 10%;
+  border-radius: 10%;
+}
+div.padding {
+  padding: 15mm;
+  border: 1px solid #ccc; 
+  border-left: none; 
+}
+
+h2 {
+  font-size: 20px; 
+  margin-bottom: 5mm; 
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.5; 
+  font-weight: bold;
+
+}
+
+a {
+  display: block; 
+  text-align: center; 
+  padding: 10mm;
+  background-color:#24a0ed; 
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5mm;
+  margin-top: 10mm;
+  width: 20%; 
+  text-align: center; 
+  margin-left: 40%;
+
+}
+
+</style>
+</head>
+<body>
+    <div id="content">
+        <div>
+            <img src="hg.jpg" alt="Sample Image">
+        </div>
+        <div class="padding">
+            <h2>Dummy Text</h2>
+            <p>This is some dummy text. You can replace it with your own content.</p>
+        </div>
+    </div>
+
+    <a href="#" onclick="generatePDF()">Generate PDF</a>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+    <script>
+        function generatePDF() {
+            const content = document.getElementById('content');
+
+            const options = {
+                margin: 10,
+                filename: 'generated_pdf.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf(content, options);
+        }
+    </script>
+</body>
+</html>
